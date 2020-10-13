@@ -49,17 +49,16 @@ def enhance(input, output):
 
     out_pred = mbllen.predict(img_A)
     print(out_pred.shape)
-
     image = np.squeeze(out_pred, axis=0)
     print(image.shape)
-
+    
     fake_B = out_pred[0, :, :, :3]
     fake_B_o = fake_B
 
     gray_fake_B = fake_B[:, :, 0] * 0.299 + fake_B[:, :, 1] * 0.587 + fake_B[:, :, 1] * 0.114
     percent_max = sum(sum(gray_fake_B >= maxrange))/sum(sum(gray_fake_B <= 1.0))
     print(percent_max)
-
+   
 
     max_value = np.percentile(gray_fake_B[:], highpercent)
     if percent_max < (100-highpercent)/100.:

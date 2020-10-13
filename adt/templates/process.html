@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<img src="{% static output_img %}">
+<table>
+<tr style="text-align:center"><th>input image</th><th>Output Image</th></tr>
+<tr><td>
+<img src="{{ input_img }}" width=100%></td>
+<td><img src="{% static output_img %}" width=100%></td></tr>
+</table>
 {% endblock content %}

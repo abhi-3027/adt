@@ -105,7 +105,6 @@ def enhance(input, output):
     imwrite(img_name, outputs)
 '''
 def home(request):
-    #enhance('MBLLEN/input/1.bmp','result')
     return render(request,'index.html')
 def process(request):
     if request.method=='POST':
@@ -113,8 +112,10 @@ def process(request):
         fs=FileSystemStorage()
         filename=fs.save(img.name,img)
         output_img=enhance('media_root/'+filename,'static_in_env')
+        inptimg='media/'+filename
         new=output_img.replace('static_in_env/','')
-        return render(request,'process.html',{'output_img':new})
+        return render(request,'process.html',{'output_img':new,
+                                               'input_img':inptimg,})
         
     else:
         return HttpResponse('error')
